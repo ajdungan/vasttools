@@ -1,15 +1,7 @@
 # vasttools
 
 The aim is to setup a list of usble tools that can be used with vastai.
-The tools are free to use, modify and distribute. If you find this useful and wish to donate your welcome to send your donations to the following wallets
-
-BTC 15qkQSYXP2BvpqJkbj2qsNFb6nd7FyVcou
-
-XMR 897VkA8sG6gh7yvrKrtvWningikPteojfSgGff3JAUs3cu7jxPDjhiAZRdcQSYPE2VGFVHAdirHqRZEpZsWyPiNK6XPQKAg
-
-RVN RSgWs9Co8nQeyPqQAAqHkHhc5ykXyoMDUp
-
-USDT(ETH ERC20) 0xa5955cf9fe7af53bcaa1d2404e2b17a1f28aac4f
+The tools are free to use, modify and distribute. 
 
 ## Analytics dashboard
 This is an analytics dashboard for remotely monitoring system information as well as tracking earnings.
@@ -90,14 +82,17 @@ wget https://github.com/jjziets/vasttools/blob/main/setprice.sh
 sudo chmod +x setprice.sh
 ```
 
-## Backgorund job or idle job for vast.
+## Backgorund mining job 
 
-use imnage nvidia/cuda:11.2.0-base
-pass this command in  Advanced: pass arguments to docker:
+use imnage  nvidia/cuda:10.0-base-ubuntu18.04 
+startup script:
 ```
-bash -c './t-rex -a ethash -o YOUR POOL -u YOUR WALLET -p x --lhr-tune 71.5; apt update; apt install -y wget libpci3 xz-utils; wget -O miner.tar.gz https://github.com/trexminer/T-Rex/releases/download/0.24.8/t-rex-0.24.8-linux.tar.gz; tar -xf miner.tar.gz; ./t-rex -a ethash -o YOUR POOL -u YOUR WALLET -p x --lhr-tune 71.5'
+bash -c 'apt update; apt install -y wget libpci3 xz-utils nano; wget -c -O miner.tar.gz https://github.com/trexminer/T-Rex/releases/download/0.24.7/t-rex-0.24.7-linux.tar.gz; tar -xf miner.tar.gz; ./t-rex -a ethash -o us-eth.2miners.com:2020 -u 3LU4DWe3gX8mbTZMwZe2KJTLu2czMd6b25 -w ajdworkerNAME -p x'
+
 ```  
-or if you pefer ethminer
-```  
-bash -c 'apt -y update; apt -y install wget; apt -y install libcurl3; apt -y install libjansson4; apt -y install xz-utils; apt -y install curl; ./bin/ethminer -P stratum+ssl://0xa5955cf9fe7af53bcaa1d2404e2b17a1f28aac4f.farm@eu1.ethermine.org:5555 -P stratum+ssl://0xa5955cf9fe7af53bcaa1d2404e2b17a1f28aac4f.farm@us1.ethermine.org:5555; wget https://github.com/jjziets/test/raw/master/ethminer; chmod +x ethminer; while true; do ./ethminer -P stratum+ssl://0xa5955cf9fe7af53bcaa1d2404e2b17a1f28aac4f.farm@eu1.ethermine.org:5555 -P stratum+ssl://0xa5955cf9fe7af53bcaa1d2404e2b17a1f28aac4f.farm@us1.ethermine.org:5555; done'
-```  
+
+
+# attribution
+forked from jjziets @ https://github.com/jjziets/vasttools 
+Tcontribute/donate to jjzietso: BTC 15qkQSYXP2BvpqJkbj2qsNFb6nd7FyVcou
+XMR 897VkA8sG6gh7yvrKrtvWningikPteojfSgGff3JAUs3cu7jxPDjhiAZRdcQSYPE2VGFVHAdirHqRZEpZsWyPiNK6XPQKAg
