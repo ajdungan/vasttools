@@ -3,6 +3,14 @@
 The aim is to setup a list of usble tools that can be used with vastai.
 The tools are free to use, modify and distribute. 
 
+# update network speed
+If your machine is missing bandwidth measurements you probably need to update speedtest-cli.  You can do that by running:
+`#navigate to damon directory
+cd /var/lib/vastai_kaalia/latest
+
+#download and run speedtest-cli
+wget -O speedtest-cli https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py;chmod +x speedtest-cli;`
+
 ## Analytics dashboard
 This is an analytics dashboard for remotely monitoring system information as well as tracking earnings.
 https://github.com/jjziets/vast.ai-tools/blob/master/analytics
