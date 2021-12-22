@@ -118,6 +118,31 @@ cat /var/log/Xorg.0.log | grep "16x"
 cat /var/log/Xorg.0.log | grep "8x"
 ```
 
+Check if GPUS are in persistence mode
+
+`usr/bin/nvidia-smi -q | grep -i Persistence`
+
+Enable persistence mode
+```
+nvidia-smi -pm 1
+```
+
+## useful utilities
+
+Glances - install script in ajdungan's systemsetup repo
+
+nvop - terminal based htop-tyled monitoring for GPUs.  
+Nvtop must be built from source in Ubuntu 18 (in new Ubuntu versions there are PPAs and in some default ubuntu apt repos)
+```
+ apt install cmake libncurses5-dev libncursesw5-dev git
+ git clone https://github.com/Syllo/nvtop.git
+ mkdir -p nvtop/build && cd nvtop/build
+ cmake ..
+ make
+ make install
+ ```
+ 
+
 # attribution
 forked from jjziets @ https://github.com/jjziets/vasttools 
 Tcontribute/donate to jjzietso: BTC 15qkQSYXP2BvpqJkbj2qsNFb6nd7FyVcou
