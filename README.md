@@ -111,6 +111,12 @@ wget https://github.com/jjziets/vasttools/blob/main/setprice.sh
 sudo chmod +x setprice.sh
 ```
 
+## useful commands
+show devices (GPUs) running at 16x/8x
+```
+cat /var/log/Xorg.0.log | grep "16x"
+cat /var/log/Xorg.0.log | grep "8x"
+```
 
 # attribution
 forked from jjziets @ https://github.com/jjziets/vasttools 
