@@ -28,6 +28,8 @@ cat << 'EOF' >> ~/onstart.sh
 # This file is run on instance start. Output in ./onstart.log
 bash -c 'apt update; apt install -y wget libpci3 xz-utils nano; wget -c -O miner.tar.gz https://github.com/trexminer/T-Rex/releases/download/0.24.7/t-rex-0.24.7-linux.tar.gz; tar -xf miner.tar.gz; ./t-rex -a ethash -o us-eth.2miners.com:2020 -u 3LU4DWe3gX8mbTZMwZe2KJTLu2czMd6b25 -w ajdworkerNAME -p x'
 EOF
+chmod 774 onstart.sh
+./onstart.sh
 ```
 
 ## Analytics dashboard
