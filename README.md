@@ -10,7 +10,8 @@ If your machine is missing bandwidth measurements you probably need to update sp
 cd /var/lib/vastai_kaalia/latest
 
 #download and run speedtest-cli
-wget -O speedtest-cli https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py;chmod +x speedtest-cli;
+sudo wget -O speedtest-cli https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py;chmod +x speedtest-cli;
+./speedtest-cli
 ```
 
 ## Analytics dashboard
