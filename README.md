@@ -131,8 +131,8 @@ nvidia-smi -pm 1
 
 Glances - install script in ajdungan's systemsetup repo
 
-nvop - terminal based htop-tyled monitoring for GPUs.  
-Nvtop must be built from source in Ubuntu 18 (in new Ubuntu versions there are PPAs and in some default ubuntu apt repos)
+nvyop - terminal based htop-tyled monitoring for GPUs.  
+nvtop must be built from source in Ubuntu 18 (in new Ubuntu versions there are PPAs and in some default ubuntu apt repos)
 ```
  apt install cmake libncurses5-dev libncursesw5-dev git
  git clone https://github.com/Syllo/nvtop.git
@@ -142,8 +142,15 @@ Nvtop must be built from source in Ubuntu 18 (in new Ubuntu versions there are P
  make install
  ```
  
+stacer - favorite gui system viewer
+```
+sudo add-apt-repository ppa:oguzhaninan/stacer
+sudo apt-get update
+sudo apt install stacer -y
+```
+
 
 # attribution
 forked from jjziets @ https://github.com/jjziets/vasttools 
-Tcontribute/donate to jjzietso: BTC 15qkQSYXP2BvpqJkbj2qsNFb6nd7FyVcou
+To contribute/donate to jjzietso: BTC 15qkQSYXP2BvpqJkbj2qsNFb6nd7FyVcou
 XMR 897VkA8sG6gh7yvrKrtvWningikPteojfSgGff3JAUs3cu7jxPDjhiAZRdcQSYPE2VGFVHAdirHqRZEpZsWyPiNK6XPQKAg
