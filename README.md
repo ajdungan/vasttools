@@ -37,7 +37,7 @@ chmod 774 onstart.sh
 single line command, example is for a 3 gpu machine; must declare first (lowest) instance id number 
 
 ```
-price=0.35; machine1=2129035 ./vast change bid $machine --price $price;./vast change bid $(($machine1 + 1)) --price $price; ./vast change bid $(($machine1 + 2)) --price $price;
+price=0.35; machine1=2129035; ./vast change bid $machine1 --price $price;./vast change bid $(($machine1 + 1)) --price $price; ./vast change bid $(($machine1 + 2)) --price $price;
 ```
 
 ## Analytics dashboard
