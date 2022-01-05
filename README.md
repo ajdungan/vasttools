@@ -32,6 +32,14 @@ chmod 774 onstart.sh
 ./onstart.sh
 ```
 
+## change bid for multiple gpu machine
+
+single line command, example is for a 3 gpu machine; must declare first (lowest) instance id number 
+
+```
+price=0.35; machine1=2129035 ./vast change bid $machine --price $price;./vast change bid $(($machine1 + 1)) --price $price; ./vast change bid $(($machine1 + 2)) --price $price;
+```
+
 ## Analytics dashboard
 This is an analytics dashboard for remotely monitoring system information as well as tracking earnings.
 https://github.com/jjziets/vast.ai-tools/blob/master/analytics
