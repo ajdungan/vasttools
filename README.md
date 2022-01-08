@@ -13,6 +13,22 @@ cd /var/lib/vastai_kaalia/latest
 sudo wget -O speedtest-cli https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py;chmod +x speedtest-cli;
 ./speedtest-cli
 ```
+
+## prevent upgrades on docker and nvidia drivers
+
+Upgrading versions of docker and nvidia drivers after vast has been installed is known to cause issues. 
+To prevent upgrades run:
+```
+sudo apt-mark hold `sudo apt list --installed *nvidia* | awk '{split($0, a, "/"); print a[1]}'`
+sudo apt-mark hold `sudo apt list --installed *docker* | awk '{split($0, a, "/"); print a[1]}'`
+```
+
+you can check the status of which packages are being froze from upgrades by running
+```
+sudo apt-mark showhold
+```
+
+
 ## Backgorund mining job 
 
 use imnage  nvidia/cuda:10.0-base-ubuntu18.04 
