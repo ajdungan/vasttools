@@ -19,9 +19,14 @@ sudo wget -O speedtest-cli https://raw.githubusercontent.com/sivel/speedtest-cli
 Upgrading versions of docker and nvidia drivers after vast has been installed is known to cause issues. 
 To prevent upgrades run:
 ```
-sudo apt-mark hold `sudo apt list --installed *nvidia* | awk '{split($0, a, "/"); print a[1]}'`
-sudo apt-mark hold `sudo apt list --installed *docker* | awk '{split($0, a, "/"); print a[1]}'`
+sudo apt-mark hold `sudo apt list --installed *nvidia* 2>/dev/null | awk '{split($0, a, "/");if(NR>1)print a[1]}`
+sudo apt-mark hold `sudo apt list --installed *docker* 2>/dev/null | awk '{split($0, a, "/");if(NR>1)print a[1]}`
 ```
+
+Coding notes:  *2>/dev/null* gets rid of pesky warning ("WARNING: apt does not have a stable CLI interface. Use with caution in scripts." Warning is standard error output, ie channel 2, and not standard, so the command will actually functionally properly without getting rid of it. Getting rid of it was just asthetic.
+
+*if(NR>1)* is to skip the first line of the output from *apt list*. This first line of output is *loading...* and including it in our *apt-mark hold* command it will be read literally as regex expression which ends up identifying the package libfile-listing-perl to be held, which isn't wanted. 
+
 
 you can check the status of which packages are being froze from upgrades by running
 ```
@@ -50,8 +55,9 @@ chmod 774 onstart.sh
 
 ## change bid for multiple gpu machine
 
-single line command, example is for a 3 gpu machine; must declare first (lowest) instance id number 
+single line command, must declare first (i.e. lowest) instance id number. Note: currently background job creates a single instance for each system gpu rather than a single instance with multiple GPUs. Accordingly it is usually best to change the bid price on all gpus.
 
+for 3 GPU
 ```
 price=0.35; machine1=2129035; ./vast change bid $machine1 --price $price;./vast change bid $(($machine1 + 1)) --price $price; ./vast change bid $(($machine1 + 2)) --price $price;
 ```
