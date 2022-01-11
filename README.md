@@ -19,8 +19,8 @@ sudo wget -O speedtest-cli https://raw.githubusercontent.com/sivel/speedtest-cli
 Upgrading versions of docker and nvidia drivers after vast has been installed is known to cause issues. 
 To prevent upgrades run:
 ```
-sudo apt-mark hold `sudo apt list --installed *nvidia* 2>/dev/null | awk '{split($0, a, "/");if(NR>1)print a[1]}`
-sudo apt-mark hold `sudo apt list --installed *docker* 2>/dev/null | awk '{split($0, a, "/");if(NR>1)print a[1]}`
+sudo apt-mark hold `sudo apt list --installed *nvidia* 2>/dev/null|awk '{split($0, a, "/");if(NR>1)print a[1]}'`
+sudo apt-mark hold `sudo apt list --installed *docker* 2>/dev/null|awk '{split($0, a, "/");if(NR>1)print a[1]}'`
 ```
 
 Coding notes:  *2>/dev/null* gets rid of pesky warning ("WARNING: apt does not have a stable CLI interface. Use with caution in scripts." Warning is standard error output, ie channel 2, and not standard, so the command will actually functionally properly without getting rid of it. Getting rid of it was just asthetic.
