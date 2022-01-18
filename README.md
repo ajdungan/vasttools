@@ -162,10 +162,11 @@ nvidia-smi -pm 1
 
 Glances - install script in ajdungan's systemsetup repo
 
-nvyop - terminal based htop-tyled monitoring for GPUs.  
+nvtop - terminal based htop-tyled monitoring for GPUs.  
 nvtop must be built from source in Ubuntu 18 (in new Ubuntu versions there are PPAs and in some default ubuntu apt repos)
 ```
  apt install cmake libncurses5-dev libncursesw5-dev git
+ cd/opt
  git clone https://github.com/Syllo/nvtop.git
  mkdir -p nvtop/build && cd nvtop/build
  cmake ..
