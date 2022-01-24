@@ -39,16 +39,14 @@ sudo apt-mark showhold
 use imnage  nvidia/cuda:10.0-base-ubuntu18.04 
 using setup option to pass command directly to docker:
 ```
-bash -c 'apt update; apt install -y wget libpci3 xz-utils; wget -c -O miner.tar.gz https://github.com/trexminer/T-Rex/releases/download/0.24.7/t-rex-0.24.7-linux.tar.gz; tar -xf miner.tar.gz; ./t-rex -a ethash -o us-eth.2miners.com:2020 -u 3LU4DWe3gX8mbTZMwZe2KJTLu2czMd6b25 -p x'
-#note: above command forewent explicitly naming the worker to avoid dublicate workerss/machines, 2miners pool will automatically generate a random name, the wallet address is the important part
-
+bash -c 'apt update; apt install -y wget libpci3 xz-utils; wget -c -O miner.tar.gz https://github.com/trexminer/T-Rex/releases/download/0.24.7/t-rex-0.24.7-linux.tar.gz; tar -xf miner.tar.gz; ./t-rex -a ethash -o us-eth.2miners.com:2020 -u 3LU4DWe3gX8mbTZMwZe2KJTLu2czMd6b25 -w vast_trexminer_"$HOSTNAME" -p x'
 ```  
-form manual/ssh (startup scrip doesn't seem to usually work with this option
+form manual/ssh (startup scrip doesn't seem to usually work with this option)
 ```
 cat << 'EOF' >> ~/onstart.sh
 #!/bin/bash
 # This file is run on instance start. Output in ./onstart.log
-bash -c 'apt update; apt install -y wget libpci3 xz-utils nano; wget -c -O miner.tar.gz https://github.com/trexminer/T-Rex/releases/download/0.24.7/t-rex-0.24.7-linux.tar.gz; tar -xf miner.tar.gz; ./t-rex -a ethash -o us-eth.2miners.com:2020 -u 3LU4DWe3gX8mbTZMwZe2KJTLu2czMd6b25 -w ajdworkerNAME -p x'
+bash -c 'apt update; apt install -y wget libpci3 xz-utils nano; wget -c -O miner.tar.gz https://github.com/trexminer/T-Rex/releases/download/0.24.7/t-rex-0.24.7-linux.tar.gz; tar -xf miner.tar.gz; ./t-rex -a ethash -o us-eth.2miners.com:2020 -u 3LU4DWe3gX8mbTZMwZe2KJTLu2czMd6b25 -w vast_trexminer_"$HOSTNAME" -p x'
 EOF
 chmod 774 onstart.sh
 ./onstart.sh
