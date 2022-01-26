@@ -78,7 +78,41 @@ wget https://raw.githubusercontent.com/jjziets/vasttools/main/set_mem.sh
 sudo chmod +x set_mem.sh
 sudo ./set_mem.sh 2000 # this will set the memory OC to +1000mhs on all the gpus. You can use 3000 on some gpu's which will give 1500mhs OC. 
 ```
+## useful utilities
 
+### Glances 
+Install script in ajdungan's [systemsetup repo] (https://github.com/ajdungan/systemsetup), it is helpful to add shortcut on your phone which essentially becomes an app to monitor your system including GPU temps
+
+### nvtop
+nvtop - terminal based htop-tyled monitoring for GPUs.  
+
+nvtop must be built from source in Ubuntu 18 (in new Ubuntu versions there are PPAs and in some default ubuntu apt repos)
+```
+ apt install cmake libncurses5-dev libncursesw5-dev git -y
+ cd/opt
+ git clone https://github.com/Syllo/nvtop.git
+ mkdir -p nvtop/build && cd nvtop/build
+ cmake ..
+ make
+ make install
+ ```
+### nfancurve
+
+nfancurve is a small and lightweight script for setting a custom fan curve, default curv in repo's conf has more agressive fan speeds than nvidia defaults (higher noise/lower temps) but is gihgly configurable.
+(https://github.com/nan0s7/nfancurve)
+
+### telegram bot - offline machine notification
+
+TBD
+
+## stacer - favorite gui system viewer
+```
+sudo add-apt-repository ppa:oguzhaninan/stacer
+sudo apt-get update
+sudo apt install stacer -y
+```
+
+```
 ## OC monitor
 setup the monitoring programe that will change the memory oc based on what programe is running. it desinged for RTX3090's and targets ethminer at this stage.
 It requires both set_mem.sh and ocmonitor.sh to run in the root.
@@ -126,6 +160,14 @@ sudo docker run -v ${PWD}/output:/app/output --shm-size 1G --rm -it -e SLEEP_TIM
 
 *based on leona / vast.ai-tools
 
+## adjusting fan speeds
+Poorly programmed on the part of nvidia, very messy with fan sppeds being tied to X-sessions and Xorg configs. Easiet way to manually adjust fan speed (fixed only) is to be logged in an x session and open the nvidia-server application, but his is very limitted and can't be done in sshterminal
+
+Nfan curve is a nice tool.
+
+Arch wiki has helpful info (https://wiki.archlinux.org/title/NVIDIA/Tips_and_tricks#Set_fan_speed_at_login)
+
+
 ## Auto update the price for host listing based on mining porfits.
 
 based on RTX 3090 120Mhs for eth. it sets the price of my 2 host. 
@@ -155,30 +197,7 @@ Check if GPUS are in persistence mode
 Enable persistence mode
 ```
 nvidia-smi -pm 1
-```
 
-## useful utilities
-
-Glances - install script in ajdungan's systemsetup repo
-
-nvtop - terminal based htop-tyled monitoring for GPUs.  
-nvtop must be built from source in Ubuntu 18 (in new Ubuntu versions there are PPAs and in some default ubuntu apt repos)
-```
- apt install cmake libncurses5-dev libncursesw5-dev git -y
- cd/opt
- git clone https://github.com/Syllo/nvtop.git
- mkdir -p nvtop/build && cd nvtop/build
- cmake ..
- make
- make install
- ```
- 
-stacer - favorite gui system viewer
-```
-sudo add-apt-repository ppa:oguzhaninan/stacer
-sudo apt-get update
-sudo apt install stacer -y
-```
 
 
 # attribution
