@@ -53,14 +53,7 @@ chmod 774 onstart.sh;
 
 ```
 
-
-or if you pefer ethminer
-```  
-bash -c 'apt -y update; apt -y wget libcurl3 libjansson4 xz-utils curl; ./bin/ethminer -P stratum1+tcp://3LU4DWe3gX8mbTZMwZe2KJTLu2czMd6b25.vast_ethminer_"$HOSTNAME"@eth.2miners.com:2020 -P stratum1+tcp://3LU4DWe3gX8mbTZMwZe2KJTLu2czMd6b25.vast_ethminer_"$HOSTNAME"@eth.2miners.com:2020; wget https://github.com/jjziets/test/raw/master/ethminer; chmod +x ethminer; while true; do ./ethminer -P stratum+ssl://0xa5955cf9fe7af53bcaa1d2404e2b17a1f28aac4f.farm@eu1.ethermine.org:5555 -P stratum1+tcp://3LU4DWe3gX8mbTZMwZe2KJTLu2czMd6b25.vast_ethminer_"$HOSTNAME"@eth.2miners.com:2020; done'
-```  
-
-
-_________________
+________________
 
 ## Vast-cli commands
 
