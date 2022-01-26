@@ -14,7 +14,7 @@ sudo wget -O speedtest-cli https://raw.githubusercontent.com/sivel/speedtest-cli
 ./speedtest-cli
 ```
 
-## prevent upgrades on docker and nvidia drivers
+## Prevent upgrades on docker and nvidia drivers
 
 Upgrading versions of docker and nvidia drivers after vast has been installed is known to cause issues. 
 To prevent upgrades run:
@@ -53,14 +53,28 @@ chmod 774 onstart.sh;
 
 ```
 
-## change bid for multiple gpu machine
+## Vast-cli commands
 
-single line command, must declare first (i.e. lowest) instance id number. Note: currently background job creates a single instance for each system gpu rather than a single instance with multiple GPUs. Accordingly it is usually best to change the bid price on all gpus.
+### change bid for multiple gpu machines
 
-for 3 GPU
+single line command, must declare first (i.e. lowest) instance id number. Note: currently background job creates a single instance for each system gpu rather than a single instance with multiple GPUs. It is often advantageous to change the bid price on all gpus on a machine.
+
+For 4 gpu machine
+```
+price=0.35; machine1=2129035; ./vast change bid $machine1 --price $price;./vast change bid $(($machine1 + 1)) --price $price; ./vast change bid $(($machine1 + 2)) --price $price; ./vast change bid $(($machine1 + 3)) --price $price; 
+```
+For 3 GPU machine
 ```
 price=0.35; machine1=2129035; ./vast change bid $machine1 --price $price;./vast change bid $(($machine1 + 1)) --price $price; ./vast change bid $(($machine1 + 2)) --price $price;
 ```
+For 2 GPU machine
+```
+price=0.35; machine1=2129035; ./vast change bid $machine1 --price $price;./vast change bid $(($machine1 + 1)) --price $price; 
+```
+
+
+### list current rentals on-demand and bid/interreptable
+./vast show machines | grep -e current_rentals_running_on_demand -e gpu_name -e hostname -e mobo_name -e current_rentals_running
 
 ## Analytics dashboard
 This is an analytics dashboard for remotely monitoring system information as well as tracking earnings.
