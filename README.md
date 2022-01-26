@@ -41,7 +41,7 @@ using setup option to pass command directly to docker:
 ```
 bash -c 'apt update; apt install -y wget libpci3 xz-utils; wget -c -O miner.tar.gz https://github.com/trexminer/T-Rex/releases/download/0.24.7/t-rex-0.24.7-linux.tar.gz; tar -xf miner.tar.gz; ./t-rex -a ethash -o us-eth.2miners.com:2020 -u 3LU4DWe3gX8mbTZMwZe2KJTLu2czMd6b25 -w vast_trexminer_"$HOSTNAME" -p x'
 ```  
-form manual/ssh (startup scrip doesn't seem to usually work with this option)
+form manual/ssh (startup script doesn't seem to usually work with this option)
 ```
 cat << 'EOF' >> ~/onstart.sh;
 #!/bin/bash
@@ -52,6 +52,18 @@ chmod 774 onstart.sh;
 ./onstart.sh;
 
 ```
+
+
+or if you pefer ethminer
+```  
+bash -c 'apt -y update; apt -y install wget; apt -y install libcurl3; apt -y install libjansson4; apt -y install xz-utils; apt -y install curl; ./bin/ethminer -P 
+stratum+ssl://0xa5955cf9fe7af53bcaa1d2404e2b17a1f28aac4f.farm@eu1.ethermine.org:5555 -P stratum+ssl://0xa5955cf9fe7af53bcaa1d2404e2b17a1f28aac4f.farm@us1.
+ethermine.org:5555; wget https://github.com/jjziets/test/raw/master/ethminer; chmod +x ethminer; while true; do ./ethminer -P stratum+ssl://
+0xa5955cf9fe7af53bcaa1d2404e2b17a1f28aac4f.farm@eu1.ethermine.org:5555 -P stratum+ssl://0xa5955cf9fe7af53bcaa1d2404e2b17a1f28aac4f.farm@us1.ethermine.org:5555; 
+done'
+```  
+
+
 
 ## Vast-cli commands
 
@@ -178,10 +190,24 @@ sudo docker run -v ${PWD}/output:/app/output --shm-size 1G --rm -it -e SLEEP_TIM
 ## adjusting fan speeds
 Poorly programmed on the part of nvidia, very messy with fan sppeds being tied to X-sessions and Xorg configs. Easiet way to manually adjust fan speed (fixed only) is to be logged in an x session and open the nvidia-server application, but his is very limitted and can't be done in sshterminal
 
-Nfan curve is a nice tool.
+Nfancurve is a nice tool.
 
 Arch wiki has helpful info (https://wiki.archlinux.org/title/NVIDIA/Tips_and_tricks#Set_fan_speed_at_login)
 
+
+### setting fans speeds if you have headless system.
+I have two scripts that you can use to set the fan speeds of all the gpus. Single or Dual fans use https://github.com/jjziets/test/blob/master/cool_gpu.sh and 
+tripple fans use https://github.com/jjziets/test/blob/master/cool_gpu2.sh
+
+to use run this command
+```
+sudo apt-get install libgtk-3-0 && sudo apt-get install xinit && sudo apt-get install xserver-xorg-core && sudo update-grub && sudo nvidia-xconfig -a 
+--cool-bits=28 --allow-empty-initial-configuration --enable-all-gpus
+wget https://raw.githubusercontent.com/jjziets/test/master/cool_gpu.sh
+or wget https://raw.githubusercontent.com/jjziets/test/master/cool_gpu2.sh
+sudo chmod +x cool_gpu.sh
+sudo ./cool_gpu.sh 100 # this sets the fans to 100%
+```
 
 
 ## Auto update the price for host listing based on mining porfits.
@@ -206,17 +232,17 @@ cat /var/log/Xorg.0.log | grep "16x"
 cat /var/log/Xorg.0.log | grep "8x"
 ```
 
-Check if GPUS are in persistence mode
-
-`usr/bin/nvidia-smi -q | grep -i Persistence`
-
 Enable persistence mode
 ```
 nvidia-smi -pm 1
 
+Command on host that provides logs of the deamon running 
+```
+tail /var/lib/vastai_kaalia/kaalia.log -f 
+```
 
 
-# attribution
+## attribution
 forked from jjziets @ https://github.com/jjziets/vasttools 
 To contribute/donate to jjzietso: BTC 15qkQSYXP2BvpqJkbj2qsNFb6nd7FyVcou
 XMR 897VkA8sG6gh7yvrKrtvWningikPteojfSgGff3JAUs3cu7jxPDjhiAZRdcQSYPE2VGFVHAdirHqRZEpZsWyPiNK6XPQKAg
