@@ -126,7 +126,7 @@ sudo apt-get update
 sudo apt install stacer -y
 ```
 
-```
+
 ## OC monitor
 setup the monitoring programe that will change the memory oc based on what programe is running. it desinged for RTX3090's and targets ethminer at this stage.
 It requires both set_mem.sh and ocmonitor.sh to run in the root.
@@ -171,8 +171,9 @@ sudo docker run -v ${PWD}/output:/app/output --shm-size 1G --rm -it --gpus all j
 Run with params SLEEP_TIME/BENCH_TIME
 sudo docker run -v ${PWD}/output:/app/output --shm-size 1G --rm -it -e SLEEP_TIME=2 -e BENCH_TIME=2 --gpus all jjziets/vastai-benchmarks
 ```
-
 *based on leona / vast.ai-tools
+
+
 
 ## adjusting fan speeds
 Poorly programmed on the part of nvidia, very messy with fan sppeds being tied to X-sessions and Xorg configs. Easiet way to manually adjust fan speed (fixed only) is to be logged in an x session and open the nvidia-server application, but his is very limitted and can't be done in sshterminal
@@ -180,6 +181,7 @@ Poorly programmed on the part of nvidia, very messy with fan sppeds being tied t
 Nfan curve is a nice tool.
 
 Arch wiki has helpful info (https://wiki.archlinux.org/title/NVIDIA/Tips_and_tricks#Set_fan_speed_at_login)
+
 
 
 ## Auto update the price for host listing based on mining porfits.
