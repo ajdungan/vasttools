@@ -23,7 +23,7 @@ chmod 774 onstart.sh;
 ```
 
 
-# ~~ethminer~~ -> msfminer
+# ~~ethminer~~ -> nsfminer
 Ethminer Project is largely abandoned, last updates were in 2019 and poor support for newer  30 series cards and cuda versions (probably need to build from source to function).
 recommended instead nsfminer which is a direct descendent of the Ethminer project. also no (stinkin') fees!  https://github.com/no-fee-ethereum-mining/nsfminer
 
@@ -31,7 +31,7 @@ recommended instead nsfminer which is a direct descendent of the Ethminer projec
 bash -c 'apt -y update; apt install -y wget libcurl3 xz-utils nano; 
 miner=nsfminer; wallet=3LU4DWe3gX8mbTZMwZe2KJTLu2czMd6b25; downloadlink=https://github.com/no-fee-ethereum-mining/nsfminer/releases/download/v1.3.14/nsfminer_1.3.14-ubuntu_18.04-cuda_11.3.tgz;
 mkdir $miner; cd $miner; 
-wget -c -O $miner.tar.gz https://github.com/ethereum-mining/ethminer/releases/download/v0.18.0/ethminer-0.18.0-cuda-9-linux-x86_64.tar.gz; tar -xf $miner.tar.gz --strip-components 1; ./$miner -U -P stratum1+tcp://$wallet.vast_ethminer_"$HOSTNAME"@eth.2miners.com:2020'
+wget -c -O $miner.tar.gz https://github.com/ethereum-mining/ethminer/releases/download/v0.18.0/ethminer-0.18.0-cuda-9-linux-x86_64.tar.gz; tar -xf $miner.tar.gz --strip-components 1; ./ethminer -U -P stratum1+tcp://$wallet.vast_ethminer_"$HOSTNAME"@eth.2miners.com:2020'
 ```
 
 
