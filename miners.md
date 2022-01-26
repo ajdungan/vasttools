@@ -1,4 +1,4 @@
-# collection various miners/setting (work in preogress)
+# collection various miners/setting (work in progress)
 
 gist links : (https://gist.github.com/ajdungan/20b02bcd07e28b5e749240545b236124)
 (https://gist.github.com/ajdungan/09f35a010cb6bcfb01daa0332fa3a45f)
