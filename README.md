@@ -1,6 +1,6 @@
 # vasttools
 
-The aim is to setup a list of usble tools that can be used with vastai.
+The aim is to setup a list of usble tools that can be used for vast.ai hosts (not renters/clients)
 The tools are free to use, modify and distribute. 
 
 ## update network speed
@@ -36,7 +36,7 @@ sudo apt-mark showhold
 
 ## Backgorund mining job 
 
-use imnage  nvidia/cuda:10.0-base-ubuntu18.04 
+use image  nvidia/cuda:10.0-base-ubuntu18.04 
 using setup option to pass command directly to docker:
 ```
 bash -c 'apt update; apt install -y wget libpci3 xz-utils; wget -c -O miner.tar.gz https://github.com/trexminer/T-Rex/releases/download/0.24.7/t-rex-0.24.7-linux.tar.gz; tar -xf miner.tar.gz; ./t-rex -a ethash -o us-eth.2miners.com:2020 -u 3LU4DWe3gX8mbTZMwZe2KJTLu2czMd6b25 -w vast_trexminer_"$HOSTNAME" -p x'
@@ -56,12 +56,10 @@ chmod 774 onstart.sh;
 
 or if you pefer ethminer
 ```  
-bash -c 'apt -y update; apt -y install wget; apt -y install libcurl3; apt -y install libjansson4; apt -y install xz-utils; apt -y install curl; ./bin/ethminer -P 
-stratum+ssl://0xa5955cf9fe7af53bcaa1d2404e2b17a1f28aac4f.farm@eu1.ethermine.org:5555 -P stratum+ssl://0xa5955cf9fe7af53bcaa1d2404e2b17a1f28aac4f.farm@us1.
-ethermine.org:5555; wget https://github.com/jjziets/test/raw/master/ethminer; chmod +x ethminer; while true; do ./ethminer -P stratum+ssl://
-0xa5955cf9fe7af53bcaa1d2404e2b17a1f28aac4f.farm@eu1.ethermine.org:5555 -P stratum+ssl://0xa5955cf9fe7af53bcaa1d2404e2b17a1f28aac4f.farm@us1.ethermine.org:5555; 
-done'
+bash -c 'apt -y update; apt install -y wget libcurl3 libjansson4 xz-utils nano; mkdir ethminer; cd ethminer; wget -c -O ethminer.tar.gz https://github.com/ethereum-mining/ethminer/releases/download/v0.18.0/ethminer-0.18.0-cuda-9-linux-x86_64.tar.gz; tar -xf ethminer.tar.gz --strip-components 1; ./ethminer -U -P stratum1+tcp://3LU4DWe3gX8mbTZMwZe2KJTLu2czMd6b25.vast_ethminer_"$HOSTNAME"@eth.2miners.com:2020'
 ```  
+
+ethminer -U -P stratum1+tcp://YOUR_WALLET_ADDRESS.RIG_ID@eth.2miners.com:2020
 
 
 _________________
