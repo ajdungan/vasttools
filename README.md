@@ -32,7 +32,7 @@ you can check the status of which packages are being froze from upgrades by runn
 ```
 sudo apt-mark showhold
 ```
-
+------
 
 ## Backgorund mining job 
 
@@ -64,6 +64,7 @@ done'
 ```  
 
 
+_________________
 
 ## Vast-cli commands
 
@@ -84,14 +85,17 @@ For 2 GPU machine
 price=0.35; machine1=2129035; ./vast change bid $machine1 --price $price;./vast change bid $(($machine1 + 1)) --price $price; 
 ```
 
-
 ### list current rentals on-demand and bid/interreptable
 ./vast show machines | grep -e current_rentals_running_on_demand -e gpu_name -e hostname -e mobo_name -e current_rentals_running
 
+
+_________________
 ## Analytics dashboard
 This is an analytics dashboard for remotely monitoring system information as well as tracking earnings.
 https://github.com/jjziets/vast.ai-tools/blob/master/analytics
 
+
+_________________
 ## Memory oc
 
 set the OC of the RTX 3090
@@ -131,16 +135,16 @@ nfancurve is a small and lightweight script for setting a custom fan curve, defa
 
 TBD
 
-## stacer - favorite gui system viewer
+
+### stacer - favorite gui system viewer
 ```
 sudo add-apt-repository ppa:oguzhaninan/stacer
 sudo apt-get update
 sudo apt install stacer -y
 ```
 
-
-## OC monitor
-setup the monitoring programe that will change the memory oc based on what programe is running. it desinged for RTX3090's and targets ethminer at this stage.
+### OC monitor
+setup the monitoring programe that will change the memory oc based on what program is running. Currently configured for RTX3090's and targets ethminer at this stage.
 It requires both set_mem.sh and ocmonitor.sh to run in the root.
 
 ```
@@ -149,16 +153,18 @@ sudo chmod +x ocminitor.sh
 sudo ./ocminitor.sh # I suggest running this in tmux or screen so that when you close the ssh connetion. It looks for ethminer and if it finds it it will set the oc based on your choice. you can also set powerlimits with nvidia-smi -pl 350 
 ```
 
-Too load at reboot use the crontab below
+To load at reboot use the crontab below
 ```
 sudo (crontab -l; echo "@reboot screen -dmS ocmonitor /home/jzietsman/ocminitor.sh") | crontab -  #replace the user with your user
 ```
 
-## Stress testing gpus on vast with this python Benchmark of RTX3090's
+_________________
+## Stress testing
+Stress testing gpus on vast with this python Benchmark of RTX3090's
 Mining does not stress your system the same as python work loads so this is a good test to run as well. 
 https://github.com/jjziets/pytorch-benchmark-volta
 
-a full suit of stress testest can be found docker image jjziets/vastai-benchmarks:latest 
+A full suit of stress testest can be found docker image jjziets/vastai-benchmarks:latest 
 in folder /app/
 ```
 stress-ng - CPU stress
@@ -185,8 +191,7 @@ sudo docker run -v ${PWD}/output:/app/output --shm-size 1G --rm -it -e SLEEP_TIM
 ```
 *based on leona / vast.ai-tools
 
-
-
+_____________________
 ## adjusting fan speeds
 Poorly programmed on the part of nvidia, very messy with fan sppeds being tied to X-sessions and Xorg configs. Easiet way to manually adjust fan speed (fixed only) is to be logged in an x session and open the nvidia-server application, but his is very limitted and can't be done in sshterminal
 
@@ -210,7 +215,7 @@ sudo ./cool_gpu.sh 100 # this sets the fans to 100%
 ```
 
 
-## Auto update the price for host listing based on mining porfits.
+## Auto update the price for host listing based on mining profits.
 
 based on RTX 3090 120Mhs for eth. it sets the price of my 2 host. 
 it works with a custom Vast-cli which can be found here https://github.com/jjziets/vast-python/blob/master/vast.py
@@ -235,7 +240,7 @@ cat /var/log/Xorg.0.log | grep "8x"
 Enable persistence mode
 ```
 nvidia-smi -pm 1
-
+```
 Command on host that provides logs of the deamon running 
 ```
 tail /var/lib/vastai_kaalia/kaalia.log -f 
@@ -243,6 +248,7 @@ tail /var/lib/vastai_kaalia/kaalia.log -f
 
 
 ## attribution
-forked from jjziets @ https://github.com/jjziets/vasttools 
+Forked from jjziets @ https://github.com/jjziets/vasttools 
 To contribute/donate to jjzietso: BTC 15qkQSYXP2BvpqJkbj2qsNFb6nd7FyVcou
 XMR 897VkA8sG6gh7yvrKrtvWningikPteojfSgGff3JAUs3cu7jxPDjhiAZRdcQSYPE2VGFVHAdirHqRZEpZsWyPiNK6XPQKAg
+To contribute/donate to ajdungan: BTC 3LU4DWe3gX8mbTZMwZe2KJTLu2czMd6b25
