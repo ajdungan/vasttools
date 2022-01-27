@@ -1,4 +1,4 @@
-# collection various miners/setting (work in progress)
+# collection of various minunf software/settings/cryptos (work in progress)
 
 gist links : (https://gist.github.com/ajdungan/20b02bcd07e28b5e749240545b236124)
 (https://gist.github.com/ajdungan/09f35a010cb6bcfb01daa0332fa3a45f)
@@ -21,7 +21,6 @@ chmod 774 onstart.sh;
 ./onstart.sh;
 
 ```
-
 
 # ~~ethminer~~ -> nsfminer
 Ethminer Project is largely abandoned, last updates were in 2019 and poor support for newer  30 series cards and cuda versions (probably need to build from source to function).
@@ -87,3 +86,5 @@ ______________________
 (https://2cryptocalc.com/eth-mining-calculator) includes basic commands/syntax for many different mining packages 
 
 (https://2cryptocalc.com/mining-software) mining software capabilites and dev fees
+
+Phoenix miner	lolMiner	Gminer	T-Rex	Team Red Miner	Ethminer	Nanominer	Xmr-stak-rx	Xmrig	NBminer	Cryptodredge	Wildrig-Multi	Bminer
