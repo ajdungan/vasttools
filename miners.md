@@ -14,6 +14,17 @@ mkdir $miner; cd $miner;
 wget -c -O $miner.tar.gz $downloadlink; tar -xf $miner.tar.gz --strip-components 1; ./ethminer -U -P stratum1+tcp://$wallet.vast_ethminer_"$id"@eth.2miners.com:2020'
 ```
 
+_________________________
+# phoenix miner
+
+```
+bash -c 'apt -y update; apt install -y wget libcurl3 xz-utils nano; 
+miner=phoenix; wallet=3LU4DWe3gX8mbTZMwZe2KJTLu2czMd6b25; downloadlink=https://phoenixminer.info/downloads/PhoenixMiner_5.9d_Linux.tar.gz;
+mkdir $miner; cd $miner; 
+wget -c -O $miner.tar.gz $downloadlink; tar -xf $miner.tar.gz --strip-components 1; ./PhoenixMiner -pool eth.2miners.com:2020 -wal $wallet -pass x -worker vast-$miner-$id -coin eth
+pause'
+```
+
 ___________________________
 
 # t-rex miner
