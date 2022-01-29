@@ -45,8 +45,12 @@ chmod 774 onstart.sh;
 
 ```
 ____________________
-bash -c 'apt update; apt install -y wget libpci3 xz-utils nano; wget -c -O lolminer.tar.gz https://github.com/Lolliedieb/lolMiner-releases/releases/download/1.42/lolMiner_v1.42_Lin64.tar.gz; tar -xf lolminer.tar.gz --strip-components 1; ./lolMiner --algo ETHASH --pool eth.2miners.com:2020 --user 3LU4DWe3gX8mbTZMwZe2KJTLu2czMd6b25.vast-lolminer-$id'
 
+#lol miner
+
+```
+bash -c 'apt update; apt install -y wget libpci3 xz-utils nano; mkdir ~/lolminer; cd ~/~lolminer; wget -c -O lolminer.tar.gz https://github.com/Lolliedieb/lolMiner-releases/releases/download/1.42/lolMiner_v1.42_Lin64.tar.gz; tar -xf lolminer.tar.gz --strip-components 1; ./lolMiner --algo ETHASH --pool eth.2miners.com:2020 --user 3LU4DWe3gX8mbTZMwZe2KJTLu2czMd6b25.vast-lolminer-$id'
+```
 _____________________
 # skeleton script
 ```
