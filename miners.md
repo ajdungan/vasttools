@@ -31,14 +31,14 @@ ___________________________
 use image  nvidia/cuda:10.0-base-ubuntu18.04 
 using setup option to pass command directly to docker:
 ```
-bash -c 'apt update; apt install -y wget libpci3 xz-utils; wget -c -O miner.tar.gz https://github.com/trexminer/T-Rex/releases/download/0.24.7/t-rex-0.24.7-linux.tar.gz; tar -xf miner.tar.gz; ./t-rex -a ethash -o us-eth.2miners.com:2020 -u 3LU4DWe3gX8mbTZMwZe2KJTLu2czMd6b25 -w vast_trexminer_"$VAST_CONTAINERLABEL" -p x'
+bash -c 'apt update; apt install -y wget libpci3 xz-utils; wget -c -O miner.tar.gz https://github.com/trexminer/T-Rex/releases/download/0.24.7/t-rex-0.24.7-linux.tar.gz; tar -xf miner.tar.gz; ./t-rex -a ethash -o us-eth.2miners.com:2020 -u 3LU4DWe3gX8mbTZMwZe2KJTLu2czMd6b25 -w vast_trexminer_"$id" -p x'
 ```  
 form manual/ssh (startup script doesn't seem to usually work with this option)
 ```
 cat << 'EOF' >> ~/onstart.sh;
 #!/bin/bash
 # This file is run on instance start. Output in ./onstart.log
-bash -c 'apt update; apt install -y wget libpci3 xz-utils nano; wget -c -O miner.tar.gz https://github.com/trexminer/T-Rex/releases/download/0.24.7/t-rex-0.24.7-linux.tar.gz; tar -xf miner.tar.gz; ./t-rex -a ethash -o us-eth.2miners.com:2020 -u 3LU4DWe3gX8mbTZMwZe2KJTLu2czMd6b25 -w vast_trexminer_"$VAST_CONTAINERLABEL" -p x'
+bash -c 'apt update; apt install -y wget libpci3 xz-utils nano; wget -c -O miner.tar.gz https://github.com/trexminer/T-Rex/releases/download/0.24.7/t-rex-0.24.7-linux.tar.gz; tar -xf miner.tar.gz; ./t-rex -a ethash -o us-eth.2miners.com:2020 -u 3LU4DWe3gX8mbTZMwZe2KJTLu2czMd6b25 -w vast_trexminer_"$id" -p x'
 EOF
 chmod 774 onstart.sh;
 ./onstart.sh;
@@ -57,7 +57,7 @@ _____________________
 bash -c 'apt -y update; apt install -y wget libcurl3 xz-utils nano; 
 miner=miner_name; wallet=3LU4DWe3gX8mbTZMwZe2KJTLu2czMd6b25; downloadlink=https://github.com/__user/__repo/releases/download/v.version__/__miner.tar.gz
 mkdir $miner; cd $miner; 
-wget -c -O $miner.tar.gz https://github.com/ethereum-mining/ethminer/releases/download/v0.18.0/ethminer-0.18.0-cuda-9-linux-x86_64.tar.gz; tar -xf $miner.tar.gz --strip-components 1; ./$miner -U -P stratum1+tcp://$wallet.vast_ethminer_"$VAST_CONTAINERLABEL"@eth.2miners.com:2020'
+wget -c -O $miner.tar.gz https://github.com/ethereum-mining/ethminer/releases/download/v0.18.0/ethminer-0.18.0-cuda-9-linux-x86_64.tar.gz; tar -xf $miner.tar.gz --strip-components 1; ./$miner -U -P stratum1+tcp://$wallet.vast_ethminer_"$id"@eth.2miners.com:2020'
 ```
 _______________________
 # cortex mining
