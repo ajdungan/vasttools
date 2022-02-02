@@ -178,8 +178,11 @@ sudo docker run -v ${PWD}/output:/app/output --shm-size 1G --rm -it --gpus all j
 Run with params SLEEP_TIME/BENCH_TIME
 sudo docker run -v ${PWD}/output:/app/output --shm-size 1G --rm -it -e SLEEP_TIME=2 -e BENCH_TIME=2 --gpus all jjziets/vastai-benchmarks
 ```
-*based on leona / vast.ai-tools
+*based on leona / vast.ai-tools*
+____
+## additional stress testing/benchmarking
 
+'https://github.com/500farm/3090-burnin' 
 _____________________
 ## adjusting fan speeds
 Poorly programmed on the part of nvidia, very messy with fan sppeds being tied to X-sessions and Xorg configs. Easiet way to manually adjust fan speed (fixed only) is to be logged in an x session and open the nvidia-server application, but his is very limitted and can't be done in sshterminal
