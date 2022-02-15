@@ -59,7 +59,7 @@ ________________
 
 ### change bid for multiple gpu machines
 
-single line command, must declare first (i.e. lowest) instance id number. Note: currently background job creates a single instance for each system gpu rather than a single instance with multiple GPUs. It is often advantageous to change the bid price on all gpus on a machine.
+Single line command to change interruptable bid for background job, as it is often advantageous to change the bid price on all gpus on a machine. You must declare the variable 'machine1' with the first (i.e. lowest) instance id number (unique instance id numbers are in sequential order). Note: currently background job creates a single instance for each system gpu rather than a single instance with multiple GPUs
 
 For 4 gpu machine
 ```
