@@ -1,4 +1,4 @@
-# collection of various minunf software/settings/cryptos (work in progress)
+# collection of various mining software/settings/cryptos (work in progress)
 
 ### Set container label as a global variable
 For naming a mining "worker" among other things it is advantageous to set the intance id (container label) as a global variable. 
