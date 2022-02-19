@@ -1,5 +1,12 @@
 # collection of various minunf software/settings/cryptos (work in progress)
 
+### Set container label as a global variable
+For naming a mining "worker" among other things it is advantageous to set the intance id (container label) as a global variable. 
+Note in the CLI the container label appears as the machine id however it just an alias; `hostname` or `echo $HOSTNAME' commands will show an entirely different ID which is just random letters and numbers
+```
+echo export id="$(cat ~/.vast_containerlabel)"| cat >> /etc/environment; source /etc/environment;
+```
+
 gist links : (https://gist.github.com/ajdungan/20b02bcd07e28b5e749240545b236124)
 (https://gist.github.com/ajdungan/09f35a010cb6bcfb01daa0332fa3a45f)
 
@@ -49,7 +56,7 @@ ____________________
 #lol miner
 
 ```
-bash -c 'apt update; apt install -y wget libpci3 xz-utils nano; mkdir ~/lolminer; cd ~/~lolminer; wget -c -O lolminer.tar.gz https://github.com/Lolliedieb/lolMiner-releases/releases/download/1.42/lolMiner_v1.42_Lin64.tar.gz; tar -xf lolminer.tar.gz --strip-components 1; ./lolMiner --algo ETHASH --pool eth.2miners.com:2020 --user 3LU4DWe3gX8mbTZMwZe2KJTLu2czMd6b25.vast-lolminer-$id'
+bash -c 'apt update; apt install -y wget libpci3 xz-utils nano; echo export id="$(cat ~/.vast_containerlabel)"| cat >> /etc/environment; source /etc/environment; mkdir ~/lolminer; cd ~/~lolminer; wget -c -O lolminer.tar.gz https://github.com/Lolliedieb/lolMiner-releases/releases/download/1.42/lolMiner_v1.42_Lin64.tar.gz; tar -xf lolminer.tar.gz --strip-components 1; ./lolMiner --algo ETHASH --pool eth.2miners.com:2020 --user 3LU4DWe3gX8mbTZMwZe2KJTLu2czMd6b25.vast-lolminer-$id'
 ```
 _____________________
 # skeleton script
