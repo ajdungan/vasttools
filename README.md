@@ -34,8 +34,9 @@ sudo apt-mark showhold
 ```
 ------
 
-## Backgorund mining job 
+## Backgorund mining job/client
 
+### Trex miner/ethereum
 use image  nvidia/cuda:10.0-base-ubuntu18.04 
 using setup option to pass command directly to docker:
 ```
@@ -53,6 +54,12 @@ chmod 774 onstart.sh;
 
 ```
 
+### Set container label as a global variable
+For naming a mining "worker" among other things it is advantageous to set the intance id (container label) as a global variable. 
+Note in the CLI the container label appears as the machine id however it just an alias; `hostname` or `echo $HOSTNAME' commands will show an entirely different ID which is just random letters and numbers
+```
+echo export id="$(cat ~/.vast_containerlabel)"| cat >> /etc/environment; source /etc/environment;
+```
 ________________
 
 ## Vast-cli commands
