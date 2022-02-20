@@ -132,6 +132,14 @@ nfancurve is a small and lightweight script for setting a custom fan curve, defa
 TBD
 
 
+### s-tui
+Terminal based cpu monitoring and stress testing. nice visualizations
+https://github.com/amanusk/s-tui
+
+### android phone - connect bot - SSH terminal
+nice ssh terminal for your phone 
+dowload available from f-droid
+
 ### stacer - favorite gui system viewer
 ```
 sudo add-apt-repository ppa:oguzhaninan/stacer
