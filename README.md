@@ -32,6 +32,18 @@ you can check the status of which packages are being froze from upgrades by runn
 ```
 sudo apt-mark showhold
 ```
+
+###disable unattended upgrades
+```
+sudo apt purge unattended-upgrades
+```
+
+OR... edit  /etc/apt/apt.conf.d/20auto-upgrades to disable automatic updates
+`sudo nano /etc/apt/apt.conf.d/20auto-upgrad`
+Once you have the file opened, switch off the Update-Package-Lists directive from 1 to 0 as shown below on Line 1:
+APT::Periodic::Update-Package-Lists "0";
+APT::Periodic::Unattended-Upgrade "1";
+
 ------
 
 ## Backgorund mining job/client
