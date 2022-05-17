@@ -52,14 +52,14 @@ APT::Periodic::Unattended-Upgrade "1";
 use image  nvidia/cuda:10.0-base-ubuntu18.04 
 using setup option to pass command directly to docker:
 ```
-bash -c 'apt update; apt install -y wget libpci3 xz-utils nano; echo export id="$(cat ~/.vast_containerlabel)"| cat >> /etc/environment; source /etc/environment; wget -c -O miner.tar.gz https://github.com/trexminer/T-Rex/releases/download/0.25.8/t-rex-0.25.8-linux.tar.gz; tar -xf miner.tar.gz; ./t-rex -a ethash -o us-eth.2miners.com:2020 -u 3LU4DWe3gX8mbTZMwZe2KJTLu2czMd6b25 -w vast_trexminer_"$id" -p x'
+bash -c 'apt update; apt install -y wget libpci3 xz-utils nano; echo export id="$(cat ~/.vast_containerlabel)"| cat >> /etc/environment; source /etc/environment; wget -c -O miner.tar.gz https://github.com/trexminer/T-Rex/releases/download/0.26.1/t-rex-0.26.1-linux.tar.gz; tar -xf miner.tar.gz; ./t-rex -a ethash -o us-eth.2miners.com:2020 -u 3LU4DWe3gX8mbTZMwZe2KJTLu2czMd6b25 -w vast_trexminer_"$id" -p x'
 ```  
 from manual cli/ssh (startup script doesn't seem to usually work with this option)
 ```
 cat << 'EOF' > ~/onstart.sh;
 #!/bin/bash
 # This file is run on instance start. Output in ./onstart.log
-bash -c 'apt update; apt install -y wget libpci3 xz-utils nano; echo export id="$(cat ~/.vast_containerlabel)"| cat >> /etc/environment; source /etc/environment; wget -c -O miner.tar.gz https://github.com/trexminer/T-Rex/releases/download/0.25.8/t-rex-0.25.8-linux.tar.gz; tar -xf miner.tar.gz; ./t-rex -a ethash -o us-eth.2miners.com:2020 -u 3LU4DWe3gX8mbTZMwZe2KJTLu2czMd6b25 -w vast_trexminer_"$id" -p x'
+bash -c 'apt update; apt install -y wget libpci3 xz-utils nano; echo export id="$(cat ~/.vast_containerlabel)"| cat >> /etc/environment; source /etc/environment; wget -c -O miner.tar.gz https://github.com/trexminer/T-Rex/releases/download/0.26.1/t-rex-0.26.1-linux.tar.gz; tar -xf miner.tar.gz; ./t-rex -a ethash -o us-eth.2miners.com:2020 -u 3LU4DWe3gX8mbTZMwZe2KJTLu2czMd6b25 -w vast_trexminer_"$id" -p x'
 EOF
 chmod 774 onstart.sh;
 ./onstart.sh;
