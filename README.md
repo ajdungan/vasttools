@@ -275,7 +275,6 @@ cat /var/log/Xorg.0.log | grep "8x"
 ```
 
 
-## Auto update the price for host listing based on mining profits.
 ## Telegram-Vast-Uptime-Bot
 This is a set of scripts for monitoring machine crashes. Run the client on your vast machine and the server on a remote one. You get notifications on Telegram if no heartbeats are sent within the timeout (default 12 seconds).
 https://github.com/jjziets/Telegram-Vast-Uptime-Bot
