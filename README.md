@@ -221,54 +221,6 @@ Arch wiki has helpful info (https://wiki.archlinux.org/title/NVIDIA/Tips_and_tri
 
 
 ### setting fans speeds if you have headless system.
-I have two scripts that you can use to set the fan speeds of all the gpus. Single or Dual fans use https://github.com/jjziets/test/blob/master/cool_gpu.sh and 
-tripple fans use https://github.com/jjziets/test/blob/master/cool_gpu2.sh
-
-to use run this command
-```
-sudo apt-get install libgtk-3-0 && sudo apt-get install xinit && sudo apt-get install xserver-xorg-core && sudo update-grub && sudo nvidia-xconfig -a 
---cool-bits=28 --allow-empty-initial-configuration --enable-all-gpus
-wget https://raw.githubusercontent.com/jjziets/test/master/cool_gpu.sh
-or wget https://raw.githubusercontent.com/jjziets/test/master/cool_gpu2.sh
-sudo chmod +x cool_gpu.sh
-sudo ./cool_gpu.sh 100 # this sets the fans to 100%
-```
-
-
-## Auto update the price for host listing based on mining profits.
-## Telegram-Vast-Uptime-Bot
-This is a set of scripts for monitoring machine crashes. Run the client on your vast machine and the server on a remote one. You get notifications on Telegram if no heartbeats are sent within the timeout (default 12 seconds).
-https://github.com/jjziets/Telegram-Vast-Uptime-Bot
-
-## Auto update the price for host listing based on mining porfits.
-
-based on RTX 3090 120Mhs for eth. it sets the price of my 2 host. 
-it works with a custom Vast-cli which can be found here https://github.com/jjziets/vast-python/blob/master/vast.py
-The manager is here https://github.com/jjziets/vasttools/blob/main/setprice.sh
-
-This should be run on a vps not on a host. do not expose your Vast API keys by using it on the host.
-```
-wget https://github.com/jjziets/vast-python/blob/master/vast.py 
-sudo chmod +x vast.py
-./vast.py  set api-key UseYourVasset
-wget https://github.com/jjziets/vasttools/blob/main/setprice.sh
-sudo chmod +x setprice.sh
-```
-
-## useful commands
-show devices (GPUs) running at 16x/8x
-```
-cat /var/log/Xorg.0.log | grep "16x"
-cat /var/log/Xorg.0.log | grep "8x"
-```
-
-Enable persistence mode
-bash -c './t-rex -a ethash -o YOUR POOL -u YOUR WALLET -p x --lhr-tune 71.5; apt update; apt install -y wget libpci3 xz-utils; wget -O miner.tar.gz https://github.com/trexminer/T-Rex/releases/download/0.25.8/t-rex-0.25.8-linux.tar.gz; tar -xf miner.tar.gz; ./t-rex -a ethash -o YOUR POOL -u YOUR WALLET -p x --lhr-tune 71.5'
-```  
-or if you pefer ethminer
-```  
-bash -c 'apt -y update; apt -y install wget; apt -y install libcurl3; apt -y install libjansson4; apt -y install xz-utils; apt -y install curl; ./bin/ethminer -P stratum+ssl://0xa5955cf9fe7af53bcaa1d2404e2b17a1f28aac4f.farm@eu1.ethermine.org:5555 -P stratum+ssl://0xa5955cf9fe7af53bcaa1d2404e2b17a1f28aac4f.farm@us1.ethermine.org:5555; wget https://github.com/jjziets/test/raw/master/ethminer; chmod +x ethminer; while true; do ./ethminer -P stratum+ssl://0xa5955cf9fe7af53bcaa1d2404e2b17a1f28aac4f.farm@eu1.ethermine.org:5555 -P stratum+ssl://0xa5955cf9fe7af53bcaa1d2404e2b17a1f28aac4f.farm@us1.ethermine.org:5555; done'
-```  
 
 ## setting fans speeds if you have headless system.
 I have two scripts that you can use to set the fan speeds of all the gpus. Single or Dual fans use https://github.com/jjziets/test/blob/master/cool_gpu.sh 
@@ -299,7 +251,6 @@ Using a instance with open ports 30996
 If display is color depth is 16 not 16bit try another vnc viewer. [TightVNC](https://www.tightvnc.com/download.php) worked for me on windows 
 The below commands can be placed in onstart.sh to run on restart 
 
-
 ```
 apt-get update 
 apt-get -y upgrade 
@@ -313,14 +264,35 @@ startxfce4
 To connect use the ip of the host and the port that was provided. In this care it is 30996
 
 
-## Usefull commands 
-"If you set up the vast CLI, you can enter this
-```
-nvidia-smi -pm 1
-```
 Command on host that provides logs of the deamon running 
 ```
 tail /var/lib/vastai_kaalia/kaalia.log -f 
+```
+ show devices (GPUs) running at 16x/8x
+```
+cat /var/log/Xorg.0.log | grep "16x"
+cat /var/log/Xorg.0.log | grep "8x"
+```
+
+
+## Auto update the price for host listing based on mining profits.
+## Telegram-Vast-Uptime-Bot
+This is a set of scripts for monitoring machine crashes. Run the client on your vast machine and the server on a remote one. You get notifications on Telegram if no heartbeats are sent within the timeout (default 12 seconds).
+https://github.com/jjziets/Telegram-Vast-Uptime-Bot
+
+## Auto update the price for host listing based on mining porfits.
+
+based on RTX 3090 120Mhs for eth. it sets the price of my 2 host. 
+it works with a custom Vast-cli which can be found here https://github.com/jjziets/vast-python/blob/master/vast.py
+The manager is here https://github.com/jjziets/vasttools/blob/main/setprice.sh
+
+This should be run on a vps not on a host. do not expose your Vast API keys by using it on the host.
+```
+wget https://github.com/jjziets/vast-python/blob/master/vast.py 
+sudo chmod +x vast.py
+./vast.py  set api-key UseYourVasset
+wget https://github.com/jjziets/vasttools/blob/main/setprice.sh
+sudo chmod +x setprice.sh
 ```
 
 
