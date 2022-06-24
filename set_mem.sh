@@ -36,8 +36,8 @@ then
     echo "Error: Current driver version is ${VER}. Driver version must be greater than 285."; exit 1;
 fi
 
-# Read a numerical command line arg between 0 and 2000
-if [ "$1" -eq "$1" ] 2>/dev/null && [ "0$1" -ge "0" ]  && [ "0$1" -le "2000" ]
+# Read a numerical command line arg between 0 and 3000
+if [ "$1" -eq "$1" ] 2>/dev/null && [ "0$1" -ge "0" ]  && [ "0$1" -le "3000" ]
 then
     $SMI -pm 1 # enable persistance mode
     speed=$1   # set speed
@@ -52,7 +52,7 @@ then
     while [  $n -lt  $NUMGPU ];
     do
         # start an x session, and call nvidia-settings to enable memo oc
-        xinit ${SET} -a [gpu:${n}]/GPUPowerMizerMode=1   -a [gpu:${n}]/GPUMemoryTransferRateOffset[2]=$speed -a [gpu:${n}]/GPUMemoryTransferRateOffset[3]=$speed -a [gpu:${n}]/GPUMemoryTransferRateOffset[4]=$speed   --  :0 -once
+        xinit ${SET} -a [gpu:${n}]/GPUPowerMizerMode=1   -a [gpu:${n}]/GPUMemoryTransferRateOffsetAllPerformanceLevels=$speed   --  :0 -once
 
         let n=n+1
     done
@@ -73,12 +73,12 @@ then
     while [  $n -lt  $NUMGPU ];
     do
         # start an x session, and call nvidia-settings to enable mem oc
-        xinit ${SET} -a [gpu:${n}]/GPUMemoryTransferRateOffset[4]=0 --  :0 -once
+        xinit ${SET} -a [gpu:${n}]/GPUMemoryTransferRateOffsetAllPerformanceLevels=0 --  :0 -once
         let n=n+1
     done
 
     echo "Complete"; exit 0;
 
 else
-    echo "Error: Please pick a Memory Offset Clock speed between 0 and 2000, or stop."; exit 1;
+    echo "Error: Please pick a Memory Offset Clock speed between 0 and 3000, or stop."; exit 1;
 fi
