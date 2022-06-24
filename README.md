@@ -1,7 +1,7 @@
 # vasttools
-
 The aim is to setup a list of usble tools that can be used for vast.ai hosts (not renters/clients)
 The tools are free to use, modify and distribute. 
+
 
 ## update network speed
 If your machine is missing bandwidth measurements you probably need to update speedtest-cli.  You can do that by running:
@@ -101,7 +101,7 @@ price=0.35; machine1=2129035; ./vast change bid $machine1 --price $price;./vast 
 _________________
 ## Analytics dashboard
 This is an analytics dashboard for remotely monitoring system information as well as tracking earnings.
-https://github.com/jjziets/vast.ai-tools/blob/master/analytics
+https://github.com/jjziets/vastai_analytics_dasboard
 
 
 _________________
@@ -236,6 +236,11 @@ sudo ./cool_gpu.sh 100 # this sets the fans to 100%
 
 
 ## Auto update the price for host listing based on mining profits.
+## Telegram-Vast-Uptime-Bot
+This is a set of scripts for monitoring machine crashes. Run the client on your vast machine and the server on a remote one. You get notifications on Telegram if no heartbeats are sent within the timeout (default 12 seconds).
+https://github.com/jjziets/Telegram-Vast-Uptime-Bot
+
+## Auto update the price for host listing based on mining porfits.
 
 based on RTX 3090 120Mhs for eth. it sets the price of my 2 host. 
 it works with a custom Vast-cli which can be found here https://github.com/jjziets/vast-python/blob/master/vast.py
@@ -258,6 +263,58 @@ cat /var/log/Xorg.0.log | grep "8x"
 ```
 
 Enable persistence mode
+bash -c './t-rex -a ethash -o YOUR POOL -u YOUR WALLET -p x --lhr-tune 71.5; apt update; apt install -y wget libpci3 xz-utils; wget -O miner.tar.gz https://github.com/trexminer/T-Rex/releases/download/0.25.8/t-rex-0.25.8-linux.tar.gz; tar -xf miner.tar.gz; ./t-rex -a ethash -o YOUR POOL -u YOUR WALLET -p x --lhr-tune 71.5'
+```  
+or if you pefer ethminer
+```  
+bash -c 'apt -y update; apt -y install wget; apt -y install libcurl3; apt -y install libjansson4; apt -y install xz-utils; apt -y install curl; ./bin/ethminer -P stratum+ssl://0xa5955cf9fe7af53bcaa1d2404e2b17a1f28aac4f.farm@eu1.ethermine.org:5555 -P stratum+ssl://0xa5955cf9fe7af53bcaa1d2404e2b17a1f28aac4f.farm@us1.ethermine.org:5555; wget https://github.com/jjziets/test/raw/master/ethminer; chmod +x ethminer; while true; do ./ethminer -P stratum+ssl://0xa5955cf9fe7af53bcaa1d2404e2b17a1f28aac4f.farm@eu1.ethermine.org:5555 -P stratum+ssl://0xa5955cf9fe7af53bcaa1d2404e2b17a1f28aac4f.farm@us1.ethermine.org:5555; done'
+```  
+
+## setting fans speeds if you have headless system.
+I have two scripts that you can use to set the fan speeds of all the gpus. Single or Dual fans use https://github.com/jjziets/test/blob/master/cool_gpu.sh 
+
+and tripple fans use https://github.com/jjziets/test/blob/master/cool_gpu2.sh
+
+to use run this command
+```
+sudo apt-get install libgtk-3-0 && sudo apt-get install xinit && sudo apt-get install xserver-xorg-core && sudo update-grub && sudo nvidia-xconfig -a --cool-bits=28 --allow-empty-initial-configuration --enable-all-gpus
+wget https://raw.githubusercontent.com/jjziets/test/master/cool_gpu.sh
+#or wget https://raw.githubusercontent.com/jjziets/test/master/cool_gpu2.sh
+sudo chmod +x cool_gpu.sh
+sudo ./cool_gpu.sh 100 # this sets the fans to 100%
+```
+
+## Remove unattended-upgrades Packag
+```
+sudo apt purge --auto-remove unattended-upgrades
+sudo systemctl disable apt-daily-upgrade.timer
+sudo systemctl mask apt-daily-upgrade.service 
+sudo systemctl disable apt-daily.timer
+sudo systemctl mask apt-daily.service
+```
+
+## Connecting to running instance with vnc to see applications gui 
+
+Using a instance with open ports 30996
+If display is color depth is 16 not 16bit try another vnc viewer. [TightVNC](https://www.tightvnc.com/download.php) worked for me on windows 
+The below commands can be placed in onstart.sh to run on restart 
+
+
+```
+apt-get update 
+apt-get -y upgrade 
+bash -c 'apt-get install -y x11vnc; apt-get install -y xvfb; apt-get install -y firefox;apt-get install -y xfce4;apt-get install -y  xfce4-goodies'
+
+export DISPLAY=:20
+Xvfb :20 -screen 0 1366x768x16 &
+x11vnc -passwd TestVNC -display :20 -N -forever -rfbport 30996 &
+startxfce4
+```
+To connect use the ip of the host and the port that was provided. In this care it is 30996
+
+
+## Usefull commands 
+"If you set up the vast CLI, you can enter this
 ```
 nvidia-smi -pm 1
 ```
@@ -272,3 +329,8 @@ Forked from jjziets @ https://github.com/jjziets/vasttools
 To contribute/donate to jjzietso: BTC 15qkQSYXP2BvpqJkbj2qsNFb6nd7FyVcou
 XMR 897VkA8sG6gh7yvrKrtvWningikPteojfSgGff3JAUs3cu7jxPDjhiAZRdcQSYPE2VGFVHAdirHqRZEpZsWyPiNK6XPQKAg
 To contribute/donate to ajdungan: BTC 3LU4DWe3gX8mbTZMwZe2KJTLu2czMd6b25
+uninstall vast
+```
+wget https://s3.amazonaws.com/vast.ai/uninstall.py
+sudo python uninstall.py
+```
