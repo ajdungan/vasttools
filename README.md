@@ -295,13 +295,15 @@ sudo chmod +x setprice.sh
 ```
 
 
+## uninstall vast
+```
+wget https://s3.amazonaws.com/vast.ai/uninstall.py
+sudo python uninstall.py
+```
+
 ## attribution
 Forked from jjziets @ https://github.com/jjziets/vasttools 
 To contribute/donate to jjzietso: BTC 15qkQSYXP2BvpqJkbj2qsNFb6nd7FyVcou
 XMR 897VkA8sG6gh7yvrKrtvWningikPteojfSgGff3JAUs3cu7jxPDjhiAZRdcQSYPE2VGFVHAdirHqRZEpZsWyPiNK6XPQKAg
 To contribute/donate to ajdungan: BTC 3LU4DWe3gX8mbTZMwZe2KJTLu2czMd6b25
-uninstall vast
-```
-wget https://s3.amazonaws.com/vast.ai/uninstall.py
-sudo python uninstall.py
-```
+
