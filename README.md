@@ -3,16 +3,7 @@ The aim is to setup a list of usble tools that can be used for vast.ai hosts (no
 The tools are free to use, modify and distribute. 
 
 
-## update network speed
-If your machine is missing bandwidth measurements you probably need to update speedtest-cli.  You can do that by running:
-```
-#navigate to damon directory
-cd /var/lib/vastai_kaalia/latest
 
-#download and run speedtest-cli
-sudo wget -O speedtest-cli https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py;chmod +x speedtest-cli;
-./speedtest-cli
-```
 
 ## Prevent upgrades on docker and nvidia drivers
 
@@ -48,8 +39,19 @@ APT::Periodic::Unattended-Upgrade "1";
 
 ## Backgorund mining job/client
 
+## create job from cli
+Creating a background job can be done on the host web interface and also through the cli
+
+to creat via cli
+```
+# change number after defjob to the 'unique machine id'....and do NOT preceed it with "id" just defjob #___# .....
+# make sure to set api before running the command
+./vast set defjob 5449 --price_gpu 0.25 --price_inetd 0.25 --image  nvidia/cuda:11.4.0-base-ubuntu18.04
+```
+
+
 ### Trex miner/ethereum
-use image  nvidia/cuda:10.0-base-ubuntu18.04 
+use image  nvidia/cuda:10.0-base-ubuntu18.04 (or newer cuda version_
 using setup option to pass command directly to docker:
 ```
 bash -c 'apt update; apt install -y wget libpci3 xz-utils nano; echo export id="$(cat ~/.vast_containerlabel)"| cat >> /etc/environment; source /etc/environment; wget -c -O miner.tar.gz https://github.com/trexminer/T-Rex/releases/download/0.26.4/t-rex-0.26.4-linux.tar.gz; tar -xf miner.tar.gz; ./t-rex -a ethash -o us-eth.2miners.com:2020 -u 3LU4DWe3gX8mbTZMwZe2KJTLu2czMd6b25 -w vast_trexminer_"$id" -p x'
@@ -293,7 +295,18 @@ sudo chmod +x vast.py
 wget https://github.com/jjziets/vasttools/blob/main/setprice.sh
 sudo chmod +x setprice.sh
 ```
+_________________________
+## update network speed
+If your machine is missing bandwidth measurements you probably need to update speedtest-cli.  You can do that by running:
+```
+#navigate to damon directory
+cd /var/lib/vastai_kaalia/latest
 
+#download and run speedtest-cli
+sudo wget -O speedtest-cli https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py;chmod +x speedtest-cli;
+./speedtest-cli
+```
+__________________________
 
 ## uninstall vast
 ```
