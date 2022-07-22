@@ -64,7 +64,7 @@ _____________________
 bash -c 'apt -y update; apt install -y wget libcurl3 xz-utils nano; 
 miner=miner_name; wallet=3LU4DWe3gX8mbTZMwZe2KJTLu2czMd6b25; downloadlink=https://github.com/__user/__repo/releases/download/v.version__/__miner.tar.gz
 mkdir $miner; cd $miner; 
-wget -c -O $miner.tar.gz https://github.com/ethereum-mining/ethminer/releases/download/v0.18.0/ethminer-0.18.0-cuda-9-linux-x86_64.tar.gz; tar -xf $miner.tar.gz --strip-components 1; ./$miner -U -P stratum1+tcp://$wallet.vast_ethminer_"$id"@eth.2miners.com:2020'
+wget -c -O $miner.tar.gz $downloadlink; tar -xf $miner.tar.gz --strip-components 1; ./$miner -U -P stratum1+tcp://$wallet.vast_ethminer_"$id"@eth.2miners.com:2020'
 ```
 _______________________
 # cortex mining
@@ -104,6 +104,19 @@ ________________________
 # dual mining (especially for lhr cards)
 
 
+
+_____________________
+# nbminer script
+```
+bash -c 'apt -y update; apt install -y wget libcurl3 xz-utils nano; 
+miner=nbminer; wallet=3LU4DWe3gX8mbTZMwZe2KJTLu2czMd6b25; 
+downloadlink=https://github.com/NebuTech/NBMiner/releases/download/v42.2/NBMiner_42.2_Linux.tgz
+echo export id="$(cat ~/.vast_containerlabel)"| cat >> /etc/environment; source /etc/environment;
+mkdir $miner; cd $miner; 
+wget -c -O $miner.tgz $downloadlink; tar -xf $miner.tar.gz --strip-components 1; 
+./$miner -a ethash -o stratum+tcp://eth.2miners.com:2020 -u $wallet._vast_$id;
+```
+_______________________
 ______________________
 # refernces & resources
 
