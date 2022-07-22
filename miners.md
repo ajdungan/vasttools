@@ -108,13 +108,19 @@ ________________________
 _____________________
 # nbminer script
 ```
+cat << 'EOF' >> ~/onstart.sh;
+#!/bin/bash
+# This file is run on instance start. Output in ./onstart.log
 bash -c 'apt -y update; apt install -y wget libcurl3 xz-utils nano; 
 miner=nbminer; wallet=3LU4DWe3gX8mbTZMwZe2KJTLu2czMd6b25; 
 downloadlink=https://github.com/NebuTech/NBMiner/releases/download/v42.2/NBMiner_42.2_Linux.tgz
 echo export id="$(cat ~/.vast_containerlabel)"| cat >> /etc/environment; source /etc/environment;
 mkdir $miner; cd $miner; 
 wget -c -O $miner.tgz $downloadlink; tar -xf $miner.tar.gz --strip-components 1; 
-./$miner -a ethash -o stratum+tcp://eth.2miners.com:2020 -u $wallet._vast_$id;
+./$miner -a ethash -o stratum+tcp://eth.2miners.com:2020 -u $wallet._vast_$id'
+EOF
+chmod 774 onstart.sh;
+./onstart.sh;
 ```
 _______________________
 ______________________
